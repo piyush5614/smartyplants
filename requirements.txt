@@ -1,0 +1,3 @@
+# Root requirements file for Render deployment
+# References backend dependencies
+-r backend/requirements.txt

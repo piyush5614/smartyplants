@@ -98,17 +98,11 @@ class Config:
         Raises:
             ValueError: If required configuration is missing
         """
-        required_keys = ['OPENAI_API_KEY']
-        missing_keys = []
-        
-        for key in required_keys:
-            if not getattr(cls, key, None):
-                missing_keys.append(key)
-        
-        if missing_keys:
+        # At least one AI API key is required (Gemini OR OpenAI)
+        if not cls.GEMINI_API_KEY and not cls.OPENAI_API_KEY:
             raise ValueError(
-                f"Missing required environment variables: {', '.join(missing_keys)}. "
-                "Please set these in your .env file or environment."
+                "Missing required AI API key. Please set GEMINI_API_KEY (or GOOGLE_API_KEY) "
+                "or OPENAI_API_KEY in your .env file or environment."
             )
     
     @classmethod
